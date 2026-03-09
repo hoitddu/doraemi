@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#FFF8F0"/>
+  <circle cx="256" cy="220" r="120" fill="#FF8C6B"/>
+  <circle cx="210" cy="195" r="18" fill="#fff"/>
+  <circle cx="302" cy="195" r="18" fill="#fff"/>
+  <circle cx="213" cy="198" r="8" fill="#4A3728"/>
+  <circle cx="305" cy="198" r="8" fill="#4A3728"/>
+  <ellipse cx="256" cy="240" rx="22" ry="16" fill="#4A3728"/>
+  <ellipse cx="200" cy="235" rx="16" ry="10" fill="#FFB8A0" opacity="0.6"/>
+  <ellipse cx="312" cy="235" rx="16" ry="10" fill="#FFB8A0" opacity="0.6"/>
+  <circle cx="176" cy="140" r="50" fill="#FF8C6B"/>
+  <circle cx="336" cy="140" r="50" fill="#FF8C6B"/>
+  <text x="256" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="60" font-weight="800" fill="#4A3728">도레미곰</text>
+</svg>

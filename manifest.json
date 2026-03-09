@@ -1,0 +1,17 @@
+{
+  "name": "노래하는 도레미곰",
+  "short_name": "도레미곰",
+  "description": "도레미곰 오디오 플레이어",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFF8F0",
+  "theme_color": "#FF8C6B",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
