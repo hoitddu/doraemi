@@ -22,14 +22,20 @@
   --card-bg: #FFFFFF;
   --primary: #FF8C6B;
   --primary-light: #FFD4C4;
+  --primary-glow: #FFE8DE;
   --secondary: #7EC8E3;
   --secondary-light: #D4F0FF;
+  --secondary-glow: #E8F6FF;
   --accent: #FFD93D;
   --text: #4A3728;
   --text-light: #8B7355;
-  --disabled: #D5D0CB;
+  --disabled-bg: #F5F0EB;
+  --disabled-border: #E8E2DC;
+  --disabled-text: #B8AFA6;
   --shadow: 0 1px 4px rgba(74,55,40,0.10);
   --shadow-active: 0 1px 2px rgba(74,55,40,0.12);
+  --shadow-playing: 0 2px 8px rgba(255,140,107,0.25);
+  --shadow-playing-n: 0 2px 8px rgba(126,200,227,0.25);
   --radius: 12px;
   --radius-sm: 8px;
 }
@@ -54,7 +60,7 @@ body {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 8px 6px 16px;
+  padding: 8px 6px calc(24px + env(safe-area-inset-bottom));
   padding-left: max(6px, env(safe-area-inset-left));
   padding-right: max(6px, env(safe-area-inset-right));
 }
@@ -81,7 +87,7 @@ body {
 .tab-btn {
   flex: 1;
   padding: 8px 0;
-  border: 2px solid var(--disabled);
+  border: 2px solid var(--disabled-border);
   border-radius: var(--radius);
   background: var(--card-bg);
   font-size: 0.9rem;
@@ -171,7 +177,7 @@ audio {
   justify-content: center;
   gap: 5px;
   padding: 7px 0;
-  border: 2px solid var(--disabled);
+  border: 2px solid var(--disabled-border);
   border-radius: var(--radius-sm);
   background: var(--card-bg);
   font-size: 0.75rem;
@@ -199,8 +205,8 @@ audio {
 /* ─── 책 번호 그리드 ───────────────────────────── */
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
   width: 100%;
 }
 
@@ -210,7 +216,7 @@ audio {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5px 2px 4px;
+  padding: 6px 2px 5px;
   border: 1.5px solid transparent;
   border-radius: var(--radius-sm);
   background: var(--card-bg);
@@ -219,7 +225,7 @@ audio {
   transition: all 0.15s;
   -webkit-user-select: none;
   user-select: none;
-  min-height: 44px;
+  min-height: 48px;
   min-width: 0;
   overflow: hidden;
 }
@@ -234,56 +240,77 @@ audio {
   color: var(--text);
 }
 .book-title {
-  font-size: 0.5rem;
+  font-size: 0.55rem;
   font-weight: 500;
   color: var(--text-light);
-  line-height: 1.15;
-  margin-top: 1px;
+  line-height: 1.25;
+  margin-top: 2px;
   text-align: center;
   width: 100%;
+  padding: 0 1px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0 1px;
+  white-space: normal;
+  word-break: keep-all;
 }
 
 /* 활성 (재생 중) */
 .book-btn.playing-musical {
   border-color: var(--primary);
-  background: var(--primary-light);
+  background: var(--primary-glow);
+  box-shadow: var(--shadow-playing);
 }
-.book-btn.playing-musical .book-num { color: var(--primary); }
+.book-btn.playing-musical .book-num {
+  color: var(--primary);
+  font-weight: 900;
+}
+.book-btn.playing-musical .book-title { color: var(--primary); }
 
 .book-btn.playing-narration {
   border-color: var(--secondary);
-  background: var(--secondary-light);
+  background: var(--secondary-glow);
+  box-shadow: var(--shadow-playing-n);
 }
-.book-btn.playing-narration .book-num { color: #3A9CC0; }
+.book-btn.playing-narration .book-num {
+  color: #3A9CC0;
+  font-weight: 900;
+}
+.book-btn.playing-narration .book-title { color: #3A9CC0; }
 
 /* 비활성 (음원 없음) */
 .book-btn.disabled {
-  opacity: 0.45;
+  opacity: 1;
   cursor: default;
+  background: var(--disabled-bg);
+  border-color: var(--disabled-border);
   box-shadow: none;
 }
 .book-btn.disabled:active { transform: none; }
-.book-btn.disabled .book-num { color: var(--disabled); }
+.book-btn.disabled .book-num { color: var(--disabled-text); }
+.book-btn.disabled .book-title { color: var(--disabled-text); }
 
 /* ─── 반응형 ───────────────────────────────────── */
-@media (min-width: 390px) {
+@media (max-width: 359px) {
   .book-grid { grid-template-columns: repeat(5, 1fr); }
+}
+@media (min-width: 360px) and (max-width: 389px) {
+  .book-grid { grid-template-columns: repeat(6, 1fr); }
 }
 @media (min-width: 520px) {
   .book-grid { grid-template-columns: repeat(8, 1fr); }
-  .book-btn { min-height: 48px; padding: 6px 2px 5px; }
+  .book-btn { min-height: 52px; padding: 7px 3px 5px; }
   .book-num { font-size: 1.1rem; }
+  .book-title { font-size: 0.6rem; }
 }
 @media (min-width: 768px) {
-  .app { max-width: 700px; padding: 12px 12px 80px; }
-  .book-grid { grid-template-columns: repeat(10, 1fr); }
-  .book-btn { min-height: 52px; padding: 7px 3px 5px; }
+  .app { max-width: 700px; padding: 12px 12px calc(32px + env(safe-area-inset-bottom)); }
+  .book-grid { grid-template-columns: repeat(10, 1fr); gap: 6px; }
+  .book-btn { min-height: 56px; padding: 8px 3px 6px; }
   .book-num { font-size: 1.15rem; }
-  .book-title { font-size: 0.55rem; }
+  .book-title { font-size: 0.65rem; }
 }
 @media (min-width: 1024px) {
   .app { max-width: 900px; }
@@ -297,11 +324,17 @@ audio {
     --card-bg: #2A2520;
     --text: #F0E6D8;
     --text-light: #A89880;
-    --disabled: #4A4540;
+    --disabled-bg: #252220;
+    --disabled-border: #3A3530;
+    --disabled-text: #6A6058;
     --shadow: 0 1px 4px rgba(0,0,0,0.25);
     --shadow-active: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-playing: 0 2px 8px rgba(255,140,107,0.15);
+    --shadow-playing-n: 0 2px 8px rgba(126,200,227,0.15);
     --primary-light: #3D2820;
+    --primary-glow: #3D2820;
     --secondary-light: #1A2E38;
+    --secondary-glow: #1A2E38;
   }
 }
 </style>
