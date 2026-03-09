@@ -28,36 +28,44 @@
   --text: #4A3728;
   --text-light: #8B7355;
   --disabled: #D5D0CB;
-  --shadow: 0 2px 8px rgba(74,55,40,0.10);
-  --shadow-active: 0 1px 3px rgba(74,55,40,0.12);
-  --radius: 14px;
-  --radius-sm: 10px;
+  --shadow: 0 1px 4px rgba(74,55,40,0.10);
+  --shadow-active: 0 1px 2px rgba(74,55,40,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
 }
 
-html { font-size: 15px; }
+html {
+  font-size: 15px;
+  overflow-x: hidden;
+}
 
 body {
   font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100dvh;
+  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* ─── 레이아웃 ─────────────────────────────────── */
 .app {
-  max-width: 520px;
+  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 12px 10px 120px;
+  padding: 8px 6px 100px;
+  padding-left: max(6px, env(safe-area-inset-left));
+  padding-right: max(6px, env(safe-area-inset-right));
 }
 
 /* ─── 헤더 ─────────────────────────────────────── */
 .header {
   text-align: center;
-  padding: 10px 0 8px;
+  padding: 6px 0;
 }
 .header h1 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--primary);
   letter-spacing: -0.5px;
@@ -67,16 +75,16 @@ body {
 /* ─── 카테고리 탭 ──────────────────────────────── */
 .tabs {
   display: flex;
-  gap: 8px;
-  margin: 8px 0;
+  gap: 6px;
+  margin: 6px 0;
 }
 .tab-btn {
   flex: 1;
-  padding: 10px 0;
-  border: 2.5px solid var(--disabled);
+  padding: 8px 0;
+  border: 2px solid var(--disabled);
   border-radius: var(--radius);
   background: var(--card-bg);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-light);
   cursor: pointer;
@@ -100,23 +108,23 @@ body {
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 10px 14px 8px;
-  margin-bottom: 8px;
+  padding: 8px 10px 6px;
+  margin-bottom: 6px;
 }
 .player-info {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
-  min-height: 36px;
+  gap: 8px;
+  margin-bottom: 4px;
+  min-height: 32px;
 }
 .player-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px; height: 36px;
+  width: 32px; height: 32px;
   border-radius: 50%;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 800;
   color: #fff;
   flex-shrink: 0;
@@ -125,28 +133,28 @@ body {
 .player-badge.narration { background: var(--secondary); }
 .player-meta { flex: 1; min-width: 0; }
 .player-category {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--text-light);
   letter-spacing: 0.5px;
 }
 .player-title {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .player-placeholder {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-light);
 }
 
 audio {
   width: 100%;
-  height: 36px;
-  border-radius: 8px;
+  height: 32px;
+  border-radius: 6px;
   outline: none;
 }
 
@@ -154,27 +162,27 @@ audio {
 .controls {
   display: flex;
   gap: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .ctrl-btn {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 9px 0;
+  gap: 5px;
+  padding: 7px 0;
   border: 2px solid var(--disabled);
   border-radius: var(--radius-sm);
   background: var(--card-bg);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-light);
   cursor: pointer;
   transition: all 0.2s;
 }
 .ctrl-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -191,8 +199,9 @@ audio {
 /* ─── 책 번호 그리드 ───────────────────────────── */
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  width: 100%;
 }
 
 .book-btn {
@@ -201,8 +210,8 @@ audio {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px 4px 6px;
-  border: 2px solid transparent;
+  padding: 5px 2px 4px;
+  border: 1.5px solid transparent;
   border-radius: var(--radius-sm);
   background: var(--card-bg);
   box-shadow: var(--shadow);
@@ -210,30 +219,32 @@ audio {
   transition: all 0.15s;
   -webkit-user-select: none;
   user-select: none;
-  min-height: 58px;
+  min-height: 44px;
+  min-width: 0;
+  overflow: hidden;
 }
 .book-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.93);
   box-shadow: var(--shadow-active);
 }
 .book-num {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 800;
   line-height: 1.1;
   color: var(--text);
 }
 .book-title {
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-weight: 500;
   color: var(--text-light);
-  line-height: 1.2;
-  margin-top: 2px;
+  line-height: 1.15;
+  margin-top: 1px;
   text-align: center;
-  max-width: 100%;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 0 2px;
+  padding: 0 1px;
 }
 
 /* 활성 (재생 중) */
@@ -259,22 +270,27 @@ audio {
 .book-btn.disabled .book-num { color: var(--disabled); }
 
 /* ─── 반응형 ───────────────────────────────────── */
-@media (min-width: 400px) {
-  .book-grid { grid-template-columns: repeat(5, 1fr); }
-}
-@media (min-width: 520px) {
+@media (min-width: 340px) {
   .book-grid { grid-template-columns: repeat(6, 1fr); }
 }
-@media (min-width: 768px) {
-  .app { max-width: 700px; padding: 16px 16px 100px; }
+@media (min-width: 390px) {
+  .book-grid { grid-template-columns: repeat(7, 1fr); }
+}
+@media (min-width: 520px) {
   .book-grid { grid-template-columns: repeat(8, 1fr); }
-  .book-btn { min-height: 64px; padding: 10px 4px 8px; }
-  .book-num { font-size: 1.25rem; }
-  .book-title { font-size: 0.6rem; }
+  .book-btn { min-height: 48px; padding: 6px 2px 5px; }
+  .book-num { font-size: 1.1rem; }
+}
+@media (min-width: 768px) {
+  .app { max-width: 700px; padding: 12px 12px 80px; }
+  .book-grid { grid-template-columns: repeat(10, 1fr); }
+  .book-btn { min-height: 52px; padding: 7px 3px 5px; }
+  .book-num { font-size: 1.15rem; }
+  .book-title { font-size: 0.55rem; }
 }
 @media (min-width: 1024px) {
-  .app { max-width: 860px; }
-  .book-grid { grid-template-columns: repeat(10, 1fr); }
+  .app { max-width: 900px; }
+  .book-grid { grid-template-columns: repeat(12, 1fr); }
 }
 
 /* ─── 다크모드 (시스템 설정 따름) ───────────────── */
@@ -285,8 +301,8 @@ audio {
     --text: #F0E6D8;
     --text-light: #A89880;
     --disabled: #4A4540;
-    --shadow: 0 2px 8px rgba(0,0,0,0.25);
-    --shadow-active: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow: 0 1px 4px rgba(0,0,0,0.25);
+    --shadow-active: 0 1px 2px rgba(0,0,0,0.3);
     --primary-light: #3D2820;
     --secondary-light: #1A2E38;
   }
